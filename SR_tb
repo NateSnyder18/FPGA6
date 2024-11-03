@@ -1,0 +1,46 @@
+module SR_tb();
+    reg r, s;
+    wire q, qbar;
+   
+    SR uut(s, r, q, qbar);
+   
+    initial
+        begin
+            r=0; s=0;
+            #5 s=1;
+            #5 s=0;
+            #5 r=1;
+            #5 r=0; s=1;
+            #5 s=0; r=1;
+            #5 r=0;
+            #5 r=1; s=1;
+        end
+       
+     initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars(1);
+     end
+     
+endmodule
+
+module SR_FF_tb();
+    reg r, s, clk;
+    wire q, qbar;
+   
+    SR_FF uut(s, r, clk, q, qbar);
+   
+   initial begin
+        clk =0;
+        forever #1 clk = ~clk;
+    end
+       
+       
+    initial begin
+    s=0; r=0;
+    #10; s=1; r=0;
+    #10; s=0; r=1;
+    #10; s=0; r=0;
+    #10; s=1; r=1;
+     end
+     
+endmodule
