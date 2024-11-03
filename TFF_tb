@@ -1,0 +1,12 @@
+module TFF_tb();
+    reg clk;
+    wire q1, q2, q3;
+   
+    counter uut(clk, q1, q2, q3);
+   
+    always #10 clk = ~clk;
+    initial begin
+        clk <= 0;
+    end
+   
+endmodule
