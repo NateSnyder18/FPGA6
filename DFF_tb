@@ -1,0 +1,53 @@
+module DFF_tb();
+    reg clk, d, rstn, i;
+    reg [2:0] delay;
+    wire q;
+   
+    DFF uut(d, rstn, clk, q);
+   
+    always #10 clk = ~clk;
+   
+    initial begin
+        clk <= 0;
+        d <= 0;
+        rstn <= 0;
+       
+        #15 d <= 1;
+        #10 rstn <= 1;
+       
+        for (i = 0; i < 5; i = i+1) begin
+            delay = $random;
+            #(delay) d <= i;
+            if (i ==0)begin
+                rstn <= ~rstn;
+            end
+        end
+    end
+endmodule
+
+module DFF2_tb();
+    reg clk, d, rstn, i;
+    reg [2:0] delay;
+    wire q;
+   
+    DFFA uut(d, rstn, clk, q);
+   
+    always #10 clk = ~clk;
+   
+    initial begin
+        clk <= 0;
+        d <= 0;
+        rstn <= 0;
+       
+        #15 d <= 1;
+        #10 rstn <= 1;
+       
+        for (i = 0; i < 5; i = i+1) begin
+            delay = $random;
+            #(delay) d <= i;
+            if (i ==0)begin
+                rstn <= ~rstn;
+            end
+        end
+    end
+endmodule
